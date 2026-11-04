@@ -7,7 +7,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./global/global.css">
+    <link rel="stylesheet" href="./halaman-pembuka/pembuka.css">
+    <link rel="stylesheet" href="./kuis1/kuis1.css">
+    <link rel="stylesheet" href="./kuis1/landscape.css">
+    <link rel="stylesheet" href="./kuis1/portrait.css">
     <title>Alfiyah Quiz</title>
 </head>
 <body>
@@ -25,119 +29,8 @@
                     <div class="appbar-note">أَلْفِيَّةُ ابْنِ مَالِكٍ</div>
                 </header>
 
-                <main class="main">
-                    <section class="screen home-screen" id="home">
-                        <div class="home-brand">
-                            <p class="eyebrow">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-                            <h1 lang="ar">أَلْفِيَّةُ ابْنِ مَالِكٍ</h1>
-                            <div class="home-rule"></div>
-                            <p class="home-lead">Latih hafalan, kuatkan pemahaman.</p>
-                            <p class="home-description">Pilih bagian Alfiyyah untuk memulai kuis. Setiap bait akan ditampilkan secara acak.</p>
-                        </div>
-
-                        <div class="home-menu">
-                            <div class="menu-heading">
-                                <p class="eyebrow">MULAI LATIHAN</p>
-                                <h2>Pilih Bagian</h2>
-                                <p>Pilih cakupan bait yang ingin dikerjakan.</p>
-                            </div>
-                            <div class="section-choices">
-                                <button class="section-choice" data-section="awal" type="button" disabled>
-                                    <span class="section-number">01</span>
-                                    <strong lang="ar">الجزء الأول</strong>
-                                    <span class="section-range">Bait 1–334</span>
-                                    <small class="section-count">Memuat...</small>
-                                </button>
-                                <button class="section-choice" data-section="tsani" type="button" disabled>
-                                    <span class="section-number">02</span>
-                                    <strong lang="ar">الجزء الثاني</strong>
-                                    <span class="section-range">Bait 335–668</span>
-                                    <small class="section-count">Memuat...</small>
-                                </button>
-                                <button class="section-choice" data-section="tsalits" type="button" disabled>
-                                    <span class="section-number">03</span>
-                                    <strong lang="ar">الجزء الثالث</strong>
-                                    <span class="section-range">Bait 669–1003</span>
-                                    <small class="section-count">Memuat...</small>
-                                </button>
-                                <button class="section-choice" data-section="semua" type="button" disabled>
-                                    <span class="section-number">04</span>
-                                    <strong lang="ar">الألفية كاملة</strong>
-                                    <span class="section-range">Seluruh bait</span>
-                                    <small class="section-count">Memuat...</small>
-                                </button>
-                            </div>
-                            <p class="status" id="status" role="status" aria-live="polite">Memuat data Alfiyyah...</p>
-                        </div>
-                    </section>
-
-                    <section class="screen quiz-screen" id="quiz" hidden>
-                        <section class="question-panel">
-                            <div class="quiz-metrics">
-                                <div class="metric">
-                                    <span>SOAL</span>
-                                    <strong id="questionNumber">1 / 0</strong>
-                                </div>
-                                <div class="metric">
-                                    <span>BENAR</span>
-                                    <strong id="score">0</strong>
-                                </div>
-                                <div class="metric">
-                                    <span>WAKTU</span>
-                                    <strong id="timer">00:00</strong>
-                                </div>
-                                <div class="metric metric-remaining">
-                                    <span>TERSISA</span>
-                                    <strong id="quizAvailable">0</strong>
-                                </div>
-                            </div>
-
-                            <div class="progress-track">
-                                <div id="progressBar"></div>
-                            </div>
-
-                            <div class="question-heading">
-                                <h2 id="questionTitle">Lengkapi Bait Berikut</h2>
-                                <span class="bait-number" id="baitNumber" lang="ar"></span>
-                            </div>
-
-                            <div class="bait-stage" id="baitStage">
-                                <div class="bait-half" id="rightHalf" lang="ar"></div>
-                                <div class="bait-half" id="leftHalf" lang="ar"></div>
-                            </div>
-                        </section>
-
-                        <section class="answer-panel">
-                            <div class="answer-heading">
-                                <div>
-                                    <p class="eyebrow">PILIHAN JAWABAN</p>
-                                    <h2>Manakah pasangan baitnya?</h2>
-                                </div>
-                                <span class="answer-mark">٤</span>
-                            </div>
-
-                            <div class="options" id="options"></div>
-
-                            <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
-
-                            <div class="actions">
-                                <button class="primary" id="nextButton" type="button" disabled>Soal Berikutnya</button>
-                                <button class="secondary" id="finishButton" type="button">Akhiri Kuis</button>
-                            </div>
-                        </section>
-                    </section>
-
-                    <section class="screen result-screen" id="result" hidden>
-                        <div class="result-symbol">✓</div>
-                        <p class="eyebrow">SESI KUIS SELESAI</p>
-                        <h2>Hasil Latihan</h2>
-                        <div class="result-score" id="finalScore">0/0</div>
-                        <p class="result-detail" id="finalDetail"></p>
-                        <div class="result-actions">
-                            <button class="primary" id="retryButton" type="button">Ulangi Bagian Ini</button>
-                            <button class="secondary" id="homeButton" type="button">Pilih Bagian Lain</button>
-                        </div>
-                    </section>
+                <main class="main" id="screens">
+                    <div class="boot-status" id="bootStatus">Memuat aplikasi...</div>
                 </main>
 
                 <footer class="app-footer">
@@ -163,6 +56,6 @@
         </div>
     </div>
 
-    <script src="./app.js" defer></script>
+    <script type="module" src="./global/global.js"></script>
 </body>
 </html>
