@@ -33,7 +33,7 @@ function rhymeKey(text) {
         .replace(/[\u064B-\u065F\u0670\u0640]/g, "")
         .replace(/[،؛,.!?؟\\]+$/g, "")
         .trim()
-        .split(/\\s+/);
+        .split(/\s+/);
 
     const word = (words.pop() || "")
         .replace(/[أإآٱ]/g, "ا")
