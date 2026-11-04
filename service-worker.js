@@ -1,4 +1,4 @@
-const CACHE_NAME = "alfiyah-quiz-v16";
+const CACHE_NAME = "alfiyah-quiz-v17";
 const APP_BASE = new URL("./", self.location.href);
 const APP_INDEX = new URL("index.html", APP_BASE).href;
 const APP_STYLE = new URL("style.css", APP_BASE).href;
@@ -54,6 +54,7 @@ self.addEventListener("fetch", event => {
         event.respondWith(networkFirst(request));
         return;
     }
+
     if (request.mode === "navigate") {
         event.respondWith(networkFirst(request, APP_INDEX));
         return;
@@ -117,7 +118,7 @@ async function precacheGoogleFonts(cache) {
                 const font = await fetch(url);
                 if (font.ok) await cache.put(url, font.clone());
             } catch (error) {
-                console.warn("Font tidak dapat disimpan:", error);
+                console.warn("Font tidak dapat disimpan untuk offline:", error);
             }
         }));
     } catch (error) {
