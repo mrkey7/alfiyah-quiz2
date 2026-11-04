@@ -294,9 +294,13 @@ button:not(:disabled) { cursor: pointer; }
 
 .quiz-screen {
     display: grid;
-    grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr);
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+    grid-template-areas: "answers questions";
     gap: clamp(14px, 1.8vw, 26px);
 }
+
+.question-panel { grid-area: questions; }
+.answer-panel { grid-area: answers; }
 
 .question-panel,
 .answer-panel {
@@ -359,36 +363,35 @@ button:not(:disabled) { cursor: pointer; }
 
 .question-heading {
     display: flex;
-    align-items: end;
-    justify-content: space-between;
+    align-items: center;
+    justify-content: flex-start;
     gap: 12px;
     margin-bottom: 12px;
 }
 
-.question-heading .eyebrow,
+.question-heading h2 {
+    margin: 0;
+    color: var(--navy);
+    font-size: clamp(17px, 2.5vh, 25px);
+    font-weight: 750;
+}
+
 .answer-heading .eyebrow {
     margin-bottom: 4px;
 }
 
-.question-heading h2,
 .answer-heading h2 {
     margin: 0;
     color: var(--navy);
     font-size: clamp(18px, 2.7vh, 28px);
 }
 
-.question-hint {
-    padding-bottom: 3px;
-    color: var(--muted);
-    font-size: clamp(10px, 1.3vh, 13px);
-    white-space: nowrap;
-}
-
 .bait-stage {
     display: grid;
     flex: 1 1 0;
-    grid-template-columns: minmax(0, 1fr) 48px minmax(0, 1fr);
-    grid-template-areas: "left number right";
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: repeat(2, minmax(0, 1fr));
+    grid-template-areas: "first" "second";
     align-items: stretch;
     min-width: 0;
     min-height: 0;
@@ -408,19 +411,19 @@ button:not(:disabled) { cursor: pointer; }
     color: #273653;
     direction: rtl;
     font-family: "Noto Naskh Arabic", serif;
-    font-size: clamp(18px, 3vh, 38px);
+    font-size: clamp(27px, 4.5vh, 52px);
     font-weight: 600;
-    line-height: 1.65;
+    line-height: 1.7;
     text-align: center;
     overflow-wrap: anywhere;
 }
 
 #rightHalf {
-    grid-area: right;
-    border-left: 1px solid #d8c9aa;
+    grid-area: first;
+    border-bottom: 1px solid #d8c9aa;
 }
 
-#leftHalf { grid-area: left; }
+#leftHalf { grid-area: second; }
 
 .bait-half.is-empty::after {
     content: "……";
@@ -430,17 +433,19 @@ button:not(:disabled) { cursor: pointer; }
 }
 
 .bait-number {
-    display: flex;
-    grid-area: number;
+    display: inline-flex;
+    flex: 0 0 auto;
     align-items: center;
     justify-content: center;
-    padding: 4px;
+    min-width: 34px;
+    min-height: 27px;
+    padding: 2px 8px;
     color: #9a8660;
     background: #f0e7d5;
-    border-right: 1px solid #d8c9aa;
-    border-left: 1px solid #d8c9aa;
+    border: 1px solid #e1d3b8;
+    border-radius: 7px;
     font-family: "Noto Naskh Arabic", serif;
-    font-size: clamp(13px, 1.8vh, 18px);
+    font-size: clamp(11px, 1.5vh, 15px);
     font-weight: 700;
     text-align: center;
 }
@@ -486,9 +491,9 @@ button:not(:disabled) { cursor: pointer; }
     border-radius: 13px;
     direction: rtl;
     font-family: "Noto Naskh Arabic", serif;
-    font-size: clamp(17px, 2.5vh, 29px);
+    font-size: clamp(20px, 3vh, 34px);
     font-weight: 600;
-    line-height: 1.7;
+    line-height: 1.65;
     text-align: center;
     overflow-wrap: anywhere;
     transition: background .15s ease, border-color .15s ease;
