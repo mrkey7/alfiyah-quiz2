@@ -1,0 +1,6 @@
+/* KUIS 1 — layout PORTRAIT
+   Disiapkan sebagai file terpisah. Saat ini pengujian masih difokuskan pada landscape. */
+@media (orientation: portrait) {
+    .viewport { display: none; }
+    .portrait-notice { display: grid; }
+}
