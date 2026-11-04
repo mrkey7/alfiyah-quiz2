@@ -1,0 +1,67 @@
+<section class="screen quiz-screen" id="quiz" hidden>
+                        <section class="question-panel">
+                            <div class="quiz-metrics">
+                                <div class="metric">
+                                    <span>SOAL</span>
+                                    <strong id="questionNumber">1 / 0</strong>
+                                </div>
+                                <div class="metric">
+                                    <span>BENAR</span>
+                                    <strong id="score">0</strong>
+                                </div>
+                                <div class="metric">
+                                    <span>WAKTU</span>
+                                    <strong id="timer">00:00</strong>
+                                </div>
+                                <div class="metric metric-remaining">
+                                    <span>TERSISA</span>
+                                    <strong id="quizAvailable">0</strong>
+                                </div>
+                            </div>
+
+                            <div class="progress-track">
+                                <div id="progressBar"></div>
+                            </div>
+
+                            <div class="question-heading">
+                                <h2 id="questionTitle">Lengkapi Bait Berikut</h2>
+                                <span class="bait-number" id="baitNumber" lang="ar"></span>
+                            </div>
+
+                            <div class="bait-stage" id="baitStage">
+                                <div class="bait-half" id="rightHalf" lang="ar"></div>
+                                <div class="bait-half" id="leftHalf" lang="ar"></div>
+                            </div>
+                        </section>
+
+                        <section class="answer-panel">
+                            <div class="answer-heading">
+                                <div>
+                                    <p class="eyebrow">PILIHAN JAWABAN</p>
+                                    <h2>Manakah pasangan baitnya?</h2>
+                                </div>
+                                <span class="answer-mark">٤</span>
+                            </div>
+
+                            <div class="options" id="options"></div>
+
+                            <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+
+                            <div class="actions">
+                                <button class="primary" id="nextButton" type="button" disabled>Soal Berikutnya</button>
+                                <button class="secondary" id="finishButton" type="button">Akhiri Kuis</button>
+                            </div>
+                        </section>
+                    </section>
+
+                    <section class="screen result-screen" id="result" hidden>
+                        <div class="result-symbol">✓</div>
+                        <p class="eyebrow">SESI KUIS SELESAI</p>
+                        <h2>Hasil Latihan</h2>
+                        <div class="result-score" id="finalScore">0/0</div>
+                        <p class="result-detail" id="finalDetail"></p>
+                        <div class="result-actions">
+                            <button class="primary" id="retryButton" type="button">Ulangi Bagian Ini</button>
+                            <button class="secondary" id="homeButton" type="button">Pilih Bagian Lain</button>
+                        </div>
+                    </section>
