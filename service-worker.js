@@ -61,7 +61,7 @@ self.addEventListener("fetch", event => {
         return;
     }
 
-    if (request.mode === "navigate" || /\\.(css|js|html)$/.test(url.pathname)) {
+    if (request.mode === "navigate" || /\.(css|js|html)$/.test(url.pathname)) {
         event.respondWith(networkFirst(request, request.mode === "navigate" ? APP_INDEX : request));
         return;
     }
