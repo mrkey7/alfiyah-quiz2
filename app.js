@@ -10,7 +10,6 @@ const sections = {
     semua: { start: 1, end: 1003 }
 };
 
-const viewport = $("viewport");
 const frame = $("frame");
 const stage = $("stage");
 const status = $("status");
