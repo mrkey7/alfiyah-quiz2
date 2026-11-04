@@ -1,15 +1,27 @@
-const CACHE_NAME = "alfiyah-quiz-v17";
+const CACHE_NAME = "alfiyah-quiz-v18";
 const APP_BASE = new URL("./", self.location.href);
 const APP_INDEX = new URL("index.html", APP_BASE).href;
-const APP_STYLE = new URL("style.css", APP_BASE).href;
-const APP_SCRIPT = new URL("app.js", APP_BASE).href;
 const DATA_FILE = new URL("ALFIYYAH.json", APP_BASE).href;
+const APP_FILES = [
+    APP_INDEX,
+    DATA_FILE,
+    new URL("global/global.css", APP_BASE).href,
+    new URL("global/global.js", APP_BASE).href,
+    new URL("halaman-pembuka/pembuka.html", APP_BASE).href,
+    new URL("halaman-pembuka/pembuka.css", APP_BASE).href,
+    new URL("halaman-pembuka/pembuka.js", APP_BASE).href,
+    new URL("kuis1/kuis1.html", APP_BASE).href,
+    new URL("kuis1/kuis1.css", APP_BASE).href,
+    new URL("kuis1/landscape.css", APP_BASE).href,
+    new URL("kuis1/portrait.css", APP_BASE).href,
+    new URL("kuis1/kuis1.js", APP_BASE).href
+];
 const SCOPE_PATH = APP_BASE.pathname;
 
 self.addEventListener("install", event => {
     event.waitUntil((async () => {
         const cache = await caches.open(CACHE_NAME);
-        await cache.addAll([APP_INDEX, APP_STYLE, APP_SCRIPT, DATA_FILE]);
+        await cache.addAll(APP_FILES);
         await precacheGoogleFonts(cache);
         await self.skipWaiting();
     })());
@@ -31,7 +43,6 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
     const request = event.request;
-
     if (request.method !== "GET") return;
 
     const url = new URL(request.url);
@@ -50,13 +61,8 @@ self.addEventListener("fetch", event => {
         return;
     }
 
-    if (url.pathname === new URL(APP_STYLE).pathname || url.pathname === new URL(APP_SCRIPT).pathname) {
-        event.respondWith(networkFirst(request));
-        return;
-    }
-
-    if (request.mode === "navigate") {
-        event.respondWith(networkFirst(request, APP_INDEX));
+    if (request.mode === "navigate" || /\\.(css|js|html)$/.test(url.pathname)) {
+        event.respondWith(networkFirst(request, request.mode === "navigate" ? APP_INDEX : request));
         return;
     }
 
