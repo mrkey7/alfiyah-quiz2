@@ -1,0 +1,61 @@
+/* KUIS 1 — layout LANDSCAPE: soal kanan, pilihan kiri */
+@media (orientation: landscape) {
+    .quiz-screen {
+        display: grid;
+        grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+        grid-template-areas: "answers questions";
+        gap: clamp(14px, 1.8vw, 26px);
+    }
+    
+    .question-panel { grid-area: questions; }
+    
+    .answer-panel { grid-area: answers; }
+    
+    .bait-stage {
+        display: grid;
+        flex: 1 1 0;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: repeat(2, minmax(0, 1fr));
+        grid-template-areas: "first" "second";
+        align-items: stretch;
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+        background: #f8f3e9;
+        border: 1px solid #d8c9aa;
+        border-radius: 14px;
+    }
+    
+    .bait-half {
+        display: grid;
+        align-items: center;
+        justify-items: stretch;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        padding: clamp(8px, 1.4vh, 16px) clamp(12px, 2vw, 28px);
+        color: #273653;
+        direction: rtl;
+        font-family: "Noto Naskh Arabic", serif;
+        font-size: clamp(32px, 5.5vh, 68px);
+        font-weight: 600;
+        line-height: 1.55;
+        text-align: center;
+        overflow-wrap: break-word;
+    }
+    
+    #rightHalf {
+        grid-area: first;
+        border-bottom: 1px solid #d8c9aa;
+    }
+    
+    #leftHalf { grid-area: second; }
+    
+    .bait-half.is-empty::after {
+        content: "……";
+        color: #b5a98f;
+        font-size: .85em;
+        letter-spacing: .12em;
+    }
+}
