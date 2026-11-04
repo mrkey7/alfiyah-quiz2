@@ -1,0 +1,261 @@
+/* GLOBAL — reset, kerangka aplikasi, header, footer, zoom, dan utilitas umum */
+:root {
+    color-scheme: light;
+    --ink: #26344e;
+    --muted: #7a766d;
+    --line: #e4ddcf;
+    --paper: #fffdf8;
+    --cream: #f5f0e5;
+    --navy: #172949;
+    --navy-soft: #263b61;
+    --gold: #c5a568;
+    --green: #28754a;
+    --green-bg: #edf6ef;
+    --red: #b5453d;
+    --red-bg: #fbefed;
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    color: var(--ink);
+    background: #e9e4d9;
+    font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+button { font: inherit; }
+
+button:disabled { cursor: not-allowed; opacity: .48; }
+
+button:not(:disabled) { cursor: pointer; }
+
+.viewport {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: safe center;
+    overflow: auto;
+    background: #e9e4d9;
+    scrollbar-width: thin;
+}
+
+.frame {
+    position: relative;
+    flex: none;
+}
+
+.stage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: grid;
+    grid-template-rows: clamp(54px, 10vh, 76px) minmax(0, 1fr) 26px;
+    overflow: hidden;
+    background: var(--cream);
+    box-shadow: 0 14px 48px rgb(23 41 73 / 16%);
+    transform-origin: top left;
+}
+
+.appbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 0;
+    padding: 0 34px;
+    color: #fff;
+    background: var(--navy);
+    border-bottom: 3px solid var(--gold);
+}
+
+.brand-lockup {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-width: 0;
+}
+
+.brand-mark {
+    display: grid;
+    width: 42px;
+    height: 42px;
+    place-items: center;
+    border: 1px solid rgb(197 165 104 / 70%);
+    border-radius: 12px;
+    color: #f2dfb8;
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: 29px;
+    line-height: 1;
+}
+
+.brand-title {
+    color: #fff;
+    font-size: clamp(16px, 2.2vh, 24px);
+    font-weight: 800;
+    letter-spacing: .14em;
+}
+
+.brand-subtitle {
+    margin-top: 3px;
+    color: #d5d0c5;
+    font-size: clamp(10px, 1.35vh, 14px);
+    letter-spacing: .025em;
+}
+
+.appbar-note {
+    padding-right: 190px;
+    color: #e8d9b8;
+    direction: rtl;
+    font-family: "Noto Naskh Arabic", serif;
+    font-size: clamp(18px, 2.6vh, 28px);
+}
+
+.main {
+    min-width: 0;
+    min-height: 0;
+    padding: clamp(9px, 2vh, 26px) clamp(16px, 2.8vw, 42px);
+    overflow: hidden;
+}
+
+.screen {
+    width: 100%;
+    height: 100%;
+    min-width: 0;
+    min-height: 0;
+}
+
+.app-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 0 42px;
+    color: #948b7b;
+    background: #f2ecdf;
+    border-top: 1px solid #e0d8c9;
+    font-size: 9px;
+    font-weight: 650;
+    letter-spacing: .12em;
+    text-align: center;
+}
+
+.cache-reset {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    display: grid;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    place-items: center;
+    color: #8b806c;
+    background: transparent;
+    border: 1px solid #d2c8b5;
+    border-radius: 6px;
+    font-size: 15px;
+    transform: translateY(-50%);
+}
+
+.cache-reset:hover { background: #e9e1d2; }
+
+.zoom-controls {
+    position: fixed;
+    z-index: 20;
+    top: 14px;
+    right: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px;
+    color: #fff;
+    background: rgb(12 26 49 / 92%);
+    border: 1px solid rgb(255 255 255 / 17%);
+    border-radius: 10px;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 18%);
+}
+
+.zoom-controls button {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    place-items: center;
+    color: #fff;
+    background: rgb(255 255 255 / 12%);
+    border-radius: 7px;
+    font-size: 20px;
+    line-height: 1;
+}
+
+.zoom-controls button:hover:not(:disabled) { background: rgb(255 255 255 / 24%); }
+
+.zoom-controls button:disabled { opacity: .35; }
+
+.zoom-controls span {
+    min-width: 43px;
+    color: #f3e6c9;
+    font-size: 11px;
+    font-weight: 750;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+}
+
+.portrait-notice {
+    display: none;
+    position: fixed;
+    inset: 0;
+    place-items: center;
+    padding: 24px;
+    color: #fff;
+    background: var(--navy);
+}
+
+.portrait-card {
+    width: min(100%, 420px);
+    padding: 34px 25px;
+    border: 1px solid rgb(255 255 255 / 15%);
+    border-radius: 18px;
+    text-align: center;
+}
+
+.rotate-symbol {
+    color: #e2c78f;
+    font-size: 48px;
+}
+
+.portrait-card h1 {
+    margin: 10px 0 8px;
+    color: #f7e9c7;
+    font-size: 24px;
+}
+
+.portrait-card p {
+    margin: 0;
+    color: #d9dce2;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+.boot-status {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    place-items: center;
+    color: var(--muted);
+    font-size: 14px;
+}
