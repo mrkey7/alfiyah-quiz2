@@ -1,70 +1,177 @@
 <!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#172554">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
-<title>Kuis Alfiyah</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#172949">
+    <link rel="manifest" href="./manifest.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <title>Alfiyah Quiz</title>
 </head>
 <body>
-<main class="app">
-<section class="panel home-panel" id="home">
-        <div class="home-brand">
-            <h1 class="arabic-title" lang="ar">أَلْفِيَّةُ ابْنِ مَالِكٍ</h1>
-            <h2 class="app-title">ALFIYAH QUIZ</h2>
-            <p class="home-subtitle">Uji Hafalan dan Pemahaman Bait Alfiyah</p>
-        </div>
-        <div class="home-content">
-            <p class="basmala" lang="ar">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-            <p class="home-description">Pilih bagian Alfiyyah yang ingin dipelajari.</p>
-            <div class="section-choices">
-                <button class="section-choice" data-section="awal" type="button" disabled><strong lang="ar">الجزء الأول</strong><span>(١-٣٣٤)</span></button>
-                <button class="section-choice" data-section="tsani" type="button" disabled><strong lang="ar">الجزء الثاني</strong><span>(٣٣٥-٦٦٨)</span></button>
-                <button class="section-choice" data-section="tsalits" type="button" disabled><strong lang="ar">الجزء الثالث</strong><span>(٦٦٩-١٠٠٣)</span></button>
-                <button class="section-choice" data-section="semua" type="button" disabled><strong lang="ar">ألفية كاملة</strong><span lang="ar">١٠٠٣ بيت</span></button>
+    <div class="viewport" id="viewport">
+        <div class="frame" id="frame">
+            <div class="stage" id="stage">
+                <header class="appbar">
+                    <div class="brand-lockup">
+                        <div class="brand-mark" lang="ar">أ</div>
+                        <div>
+                            <div class="brand-title">ALFIYAH QUIZ</div>
+                            <div class="brand-subtitle">Uji Hafalan dan Pemahaman Bait Alfiyah</div>
+                        </div>
+                    </div>
+                    <div class="appbar-note">أَلْفِيَّةُ ابْنِ مَالِكٍ</div>
+                </header>
+
+                <main class="main">
+                    <section class="screen home-screen" id="home">
+                        <div class="home-brand">
+                            <p class="eyebrow">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
+                            <h1 lang="ar">أَلْفِيَّةُ ابْنِ مَالِكٍ</h1>
+                            <div class="home-rule"></div>
+                            <p class="home-lead">Latih hafalan, kuatkan pemahaman.</p>
+                            <p class="home-description">Pilih bagian Alfiyyah untuk memulai kuis. Setiap bait akan ditampilkan secara acak.</p>
+                            <div class="home-total">
+                                <strong>١٠٠٣</strong>
+                                <span>BAIT ALFIYYAH</span>
+                            </div>
+                        </div>
+
+                        <div class="home-menu">
+                            <div class="menu-heading">
+                                <p class="eyebrow">MULAI LATIHAN</p>
+                                <h2>Pilih Bagian</h2>
+                                <p>Pilih cakupan bait yang ingin dikerjakan.</p>
+                            </div>
+                            <div class="section-choices">
+                                <button class="section-choice" data-section="awal" type="button" disabled>
+                                    <span class="section-number">01</span>
+                                    <strong lang="ar">الجزء الأول</strong>
+                                    <span class="section-range">Bait 1–334</span>
+                                    <small class="section-count">Memuat...</small>
+                                </button>
+                                <button class="section-choice" data-section="tsani" type="button" disabled>
+                                    <span class="section-number">02</span>
+                                    <strong lang="ar">الجزء الثاني</strong>
+                                    <span class="section-range">Bait 335–668</span>
+                                    <small class="section-count">Memuat...</small>
+                                </button>
+                                <button class="section-choice" data-section="tsalits" type="button" disabled>
+                                    <span class="section-number">03</span>
+                                    <strong lang="ar">الجزء الثالث</strong>
+                                    <span class="section-range">Bait 669–1003</span>
+                                    <small class="section-count">Memuat...</small>
+                                </button>
+                                <button class="section-choice" data-section="semua" type="button" disabled>
+                                    <span class="section-number">04</span>
+                                    <strong lang="ar">الألفية كاملة</strong>
+                                    <span class="section-range">Seluruh bait</span>
+                                    <small class="section-count">Memuat...</small>
+                                </button>
+                            </div>
+                            <p class="status" id="status" role="status" aria-live="polite">Memuat data Alfiyyah...</p>
+                        </div>
+                    </section>
+
+                    <section class="screen quiz-screen" id="quiz" hidden>
+                        <section class="question-panel">
+                            <div class="quiz-metrics">
+                                <div class="metric">
+                                    <span>SOAL</span>
+                                    <strong id="questionNumber">1 / 0</strong>
+                                </div>
+                                <div class="metric">
+                                    <span>BENAR</span>
+                                    <strong id="score">0</strong>
+                                </div>
+                                <div class="metric">
+                                    <span>WAKTU</span>
+                                    <strong id="timer">00:00</strong>
+                                </div>
+                                <div class="metric metric-remaining">
+                                    <span>TERSISA</span>
+                                    <strong id="quizAvailable">0</strong>
+                                </div>
+                            </div>
+
+                            <div class="progress-track">
+                                <div id="progressBar"></div>
+                            </div>
+
+                            <div class="question-heading">
+                                <div>
+                                    <p class="eyebrow">PERTANYAAN</p>
+                                    <h2>Lengkapi Bait Berikut</h2>
+                                </div>
+                                <span class="question-hint">Pilih bagian yang tepat</span>
+                            </div>
+
+                            <div class="bait-stage" id="baitStage">
+                                <div class="bait-half" id="rightHalf" lang="ar"></div>
+                                <div class="bait-number" id="baitNumber" lang="ar"></div>
+                                <div class="bait-half" id="leftHalf" lang="ar"></div>
+                            </div>
+                        </section>
+
+                        <section class="answer-panel">
+                            <div class="answer-heading">
+                                <div>
+                                    <p class="eyebrow">PILIHAN JAWABAN</p>
+                                    <h2>Manakah pasangan baitnya?</h2>
+                                </div>
+                                <span class="answer-mark">٤</span>
+                            </div>
+
+                            <div class="options" id="options"></div>
+
+                            <div class="feedback" id="feedback" role="status" aria-live="polite"></div>
+
+                            <div class="actions">
+                                <button class="primary" id="nextButton" type="button" disabled>Soal Berikutnya</button>
+                                <button class="secondary" id="finishButton" type="button">Akhiri Kuis</button>
+                            </div>
+                        </section>
+                    </section>
+
+                    <section class="screen result-screen" id="result" hidden>
+                        <div class="result-symbol">✓</div>
+                        <p class="eyebrow">SESI KUIS SELESAI</p>
+                        <h2>Hasil Latihan</h2>
+                        <div class="result-score" id="finalScore">0/0</div>
+                        <p class="result-detail" id="finalDetail"></p>
+                        <div class="result-actions">
+                            <button class="primary" id="retryButton" type="button">Ulangi Bagian Ini</button>
+                            <button class="secondary" id="homeButton" type="button">Pilih Bagian Lain</button>
+                        </div>
+                    </section>
+                </main>
+
+                <footer class="app-footer">
+                    <span>ALFIYAH QUIZ · ©2026 mr.key7@gmail.com · TEBUIRENG3</span>
+                    <button class="cache-reset" id="cacheReset" type="button" title="Hapus cache aplikasi" aria-label="Hapus cache aplikasi">↻</button>
+                </footer>
             </div>
-            <div class="status" id="status" role="status" aria-live="polite">Memuat data Alfiyyah...</div>
         </div>
-        <footer class="home-footer"><span>ALFIYAH QUIZ· ©2026 mr.key7@gmail.com Tebuireng3</span><button class="cache-reset" id="cacheReset" type="button" aria-label="Reset cache" title="Reset cache">R</button></footer>
-    </section>
 
-    <section class="panel" id="quiz">
-        <div class="quiz-top">
-            <span id="questionNumber">1 dari 0</span>
-            <span>Sisa Quiz: <strong id="quizAvailable">0</strong></span>
-            <span>Benar: <strong id="score">0</strong></span>
-            <span>Waktu: <strong id="timer">00:00</strong></span>
+        <div class="zoom-controls" aria-label="Kontrol pembesaran tampilan">
+            <button id="zoomOut" type="button" aria-label="Perkecil tampilan" title="Perkecil">−</button>
+            <span id="zoomValue">100%</span>
+            <button id="zoomIn" type="button" aria-label="Perbesar tampilan" title="Perbesar">+</button>
+            <button id="zoomReset" type="button" aria-label="Atur ulang zoom" title="Atur ulang">↺</button>
         </div>
-        <div class="track"><div id="progressBar"></div></div>
+    </div>
 
-        <div class="question-heading">
-            <p class="question-label">Lengkapi bait berikut:</p>
-            <div class="bait-number" id="baitNumber" lang="ar"></div>
+    <div class="portrait-notice" id="portraitNotice">
+        <div class="portrait-card">
+            <div class="rotate-symbol">↻</div>
+            <h1>Putar Perangkat</h1>
+            <p>Untuk menggunakan Alfiyah Quiz, gunakan posisi layar landscape (mendatar).</p>
         </div>
-        <div class="bait-stage" id="baitStage">
-            <div class="bait-half" id="rightHalf" lang="ar"></div>
-            <div class="bait-half" id="leftHalf" lang="ar"></div>
-        </div>
-        <div class="options" id="options"></div>
-        <div class="actions">
-            <div class="feedback" id="feedback" aria-live="polite"></div>
-            <button class="primary" id="nextButton" type="button" disabled>Soal Berikutnya</button>
-            <button class="secondary" id="finishButton" type="button">Selesai</button>
-        </div>
-    </section>
+    </div>
 
-    <section class="panel" id="result">
-        <p class="question-label">Sesi kuis selesai</p>
-        <div class="result-score" id="finalScore">0/0</div>
-        <div class="result-detail" id="finalDetail"></div>
-        <div class="actions result-actions">
-            <button class="primary" id="retryButton" type="button">Ulangi Bagian Sebelumnya</button>
-            <button class="secondary" id="homeButton" type="button">Pilih Bagian Lain</button>
-        </div>
-    </section>
-</main>
-<script src="./app.js?v=reset1" defer></script>
+    <script src="./app.js" defer></script>
 </body>
 </html>
