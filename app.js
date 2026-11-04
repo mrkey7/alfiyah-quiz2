@@ -258,7 +258,9 @@ function renderQuestion() {
     $("leftHalf").textContent = askFirst ? second : "";
     $("rightHalf").classList.toggle("is-empty", askFirst);
     $("leftHalf").classList.toggle("is-empty", !askFirst);
-    $("baitNumber").textContent = String(item["ن"] ?? item["نمر"] ?? "");
+    const baitNo = Number(item["نمر"]);
+    $("questionTitle").textContent = "Lengkapi Bait " + baitNo.toLocaleString("id-ID") + " Berikut";
+    $("baitNumber").textContent = String(item["ن"] ?? baitNo);
 
     const options = $("options");
     options.replaceChildren();
